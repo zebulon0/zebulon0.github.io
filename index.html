@@ -571,9 +571,35 @@
                         <p>With 9+ years of training experience and a lifetime as an athlete, I've helped hundreds of clients break through plateaus, build confidence, and achieve results they never thought possible. My championship mindset isn't about quick fixes or extreme measures—it's about building sustainable habits, understanding your unique needs, and creating a personalized roadmap to success.</p>
                         <p>Whether you're just starting your fitness journey or looking to take your training to the next level, I'm here to guide you every step of the way. Let's work together to unlock your potential and create lasting change that goes beyond just physical transformation.</p>
                     </div>
+
                     <div class="about-image fade-in">
-                        🏋️‍♂️
+                        <div class="carousel-item active">🏋️‍♂️</div>
+                        <div class="carousel-item">🏃‍♂️</div>
+                        <div class="carousel-item">🚴‍♂️</div>
+                        <div class="carousel-item">🏊‍♂️</div>
+                        <div class="carousel-item">🧘‍♂️</div>
                     </div>
+
+                    <script>
+                        let currentIndex = 0;
+                        const items = document.querySelectorAll('.carousel-item');
+                        const totalItems = items.length;
+
+                        function showNextItem() {
+                            // Remove active class from current item
+                            items[currentIndex].classList.remove('active');
+                            
+                            // Move to next item (loop back to 0 if at end)
+                            currentIndex = (currentIndex + 1) % totalItems;
+                            
+                            // Add active class to new current item
+                            items[currentIndex].classList.add('active');
+                        }
+
+                        // Start the carousel loop
+                        setInterval(showNextItem, 4000); 
+                    </script>
+
                 </div>
             </div>
         </section>
