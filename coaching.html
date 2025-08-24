@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Coaching Programs - Built By Zeb</title>
+    <meta name="description" content="Choose your transformation program. Get personalized strength training and nutrition coaching that fits your life and delivers real results.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #667eea;
+            --primary-red: #f56565;
+            --dark-blue: #2d3748;
+            --light-gray: #f7fafc;
+            --medium-gray: #4a5568;
+            --success-green: #48bb78;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: var(--gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--medium-gray);
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .cta-nav {
+            background: var(--primary-red);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 101, 101, 0.3);
+        }
+
+        .cta-nav:hover {
+            background: #e53e3e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 101, 101, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-headline {
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subheadline {
+            font-size: clamp(18px, 2vw, 24px);
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Packages Section */
+        .packages-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--medium-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .packages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 2px solid #f7fafc;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s;
+        }
+
+        .package-card:hover::before {
+            left: 100%;
+        }
+
+        .package-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-blue);
+        }
+
+        .package-card.popular {
+            border: 3px solid var(--primary-blue);
+            transform: scale(1.02);
+            background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%);
+        }
+
+        .package-card.popular::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .popular-badge {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 20px;
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .package-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin: 20px 0 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .package-subtitle {
+            color: var(--medium-gray);
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .pricing-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: #f8f9ff;
+            border-radius: 16px;
+        }
+
+        .price-display {
+            margin-bottom: 30px;
+        }
+
+        .price-amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary-red);
+            display: block;
+        }
+
+        .price-period {
+            color: var(--medium-gray);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .price-note {
+            color: var(--medium-gray);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .savings-badge {
+            background: var(--success-green);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 8px;
+            display: inline-block;
+        }
+
+        .features-list {
+            text-align: left;
+            margin: 40px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 8px 0;
+        }
+
+        .checkmark {
+            color: var(--success-green);
+            font-weight: 800;
+            margin-right: 16px;
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        .feature-text {
+            flex: 1;
+            font-size: 16px;
+            color: var(--dark-blue);
+            line-height: 1.5;
+        }
+
+        .feature-text strong {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        .cta-button {
+            background: var(--primary-red);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            background: #e53e3e;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(245, 101, 101, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            background: linear-gradient(135deg, #e6fffa 0%, #f0fff4 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .guarantee-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        .guarantee-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--dark-blue);
+            margin-bottom: 24px;
+        }
+
+        .guarantee-text {
+            font-size: 20px;
+            line-height: 1.6;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+
+        .guarantee-highlight {
+            background: var(--gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            padding: 100px 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+
+        .faq-item {
+            background: #f8f9ff;
+            margin-bottom: 16px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-question {
+            padding: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--dark-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--primary-blue);
+        }
+
+        .faq-toggle {
+            font-size: 24px;
+            color: var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 30px 30px;
+            display: none;
+            color: var(--medium-gray);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 30px;
+            text-align: center;
+            color: #a0aec0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .packages-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .package-card.popular {
+                transform: none;
+            }
+            
+            .package-card {
+                padding: 40px 30px;
+            }
+            
+            .hero-headline {
+                font-size: 32px;
+            }
+            
+            .guarantee-content {
+                padding: 40px 30px;
+            }
+        }
+
+        /* Loading states */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading .cta-button {
+            background: #cbd5e0;
+            cursor: not-allowed;
+        }
+
+        /* Stripe Pricing Table Styles */
+        .stripe-pricing-table {
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">BUILT BY ZEB</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/coaching">Coaching</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <a href="/consultation" class="cta-nav">Free Consultation</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-headline">Choose Your Transformation</h1>
+            <p class="hero-subheadline">Get the personalized coaching program that fits your goals, schedule, and budget. Every package includes your FREE consultation and 24/7 messaging access.</p>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages-section">
+        <div class="container">
+            <div class="packages-container">
+                <!-- Strength Training Package -->
+                <div class="package-card">
+                    <h3 class="package-title">Strength Training</h3>
+                    <p class="package-subtitle">Build muscle, get stronger, look athletic</p>
+                    
+                    <div class="pricing-section">
+                        <div class="price-display">
+                            <span class="price-amount">$107<span class="price-period">/month</span></span>
+                            <span class="savings-badge">Save 27%</span>
+                            <div class="price-note">6-month commitment - Best Value!</div>
+                        </div>
+                        
+                        <!-- Stripe Pricing Table for Strength Training -->
+                        <div class="stripe-pricing-table">
+                            <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+                            <stripe-pricing-table 
+                                pricing-table-id="prctbl_YOUR_STRENGTH_PRICING_TABLE_ID"
+                                publishable-key="pk_test_YOUR_PUBLISHABLE_KEY_HERE">
+                            </stripe-pricing-table>
+                        </div>
+                    </div>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text">Custom training programs updated regularly</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text">Weekly progress check-ins via video call</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text">24/7 messaging support and form checks</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text">Exercise video library with demos</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text">FREE initial strategy consultation</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text">Training for home, gym, or anywhere</span>
+                        </div>
+                    </div>
+
+                    <button class="cta-button" onclick="openStripeCheckout('strength')">Start My Transformation</button>
+                </div>
+
+                <!-- Complete Transformation Package -->
+                <div class="package-card popular">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3 class="package-title">Complete Transformation</h3>
+                    <p class="package-subtitle">Strength training + nutrition coaching</p>
+                    
+                    <div class="pricing-section">
+                        <div class="price-display">
+                            <span class="price-amount">$187<span class="price-period">/month</span></span>
+                            <span class="savings-badge">Save 24%</span>
+                            <div class="price-note">6-month commitment - Best Value!</div>
+                        </div>
+                        
+                        <!-- Stripe Pricing Table for Complete Transformation -->
+                        <div class="stripe-pricing-table">
+                            <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+                            <stripe-pricing-table 
+                                pricing-table-id="prctbl_YOUR_COMPLETE_PRICING_TABLE_ID"
+                                publishable-key="pk_test_YOUR_PUBLISHABLE_KEY_HERE">
+                            </stripe-pricing-table>
+                        </div>
+                    </div>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text"><strong>Everything in Strength Training PLUS:</strong></span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text">Personalized nutrition plan and macros</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text">Weekly nutrition adjustments</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text">Meal planning templates and recipes</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text">Supplement guidance and recommendations</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span class="feature-text">Food tracking support and education</span>
+                        </div>
+                    </div>
+
+                    <button class="cta-button" onclick="openStripeCheckout('complete')">Start My Transformation</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="guarantee-section">
+        <div class="container">
+            <div class="guarantee-content">
+                <h2 class="guarantee-title">🛡️ Your Success is Guaranteed</h2>
+                <p class="guarantee-text">
+                    I'm so confident in my coaching system that I offer a <span class="guarantee-highlight">30-day money-back guarantee</span>. 
+                    If you follow the program and don't see meaningful progress in your first month, I'll refund every penny.
+                </p>
+                <p class="guarantee-text">
+                    That's how sure I am that this will work for you.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Everything you need to know about my coaching programs</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How much time do I need to commit?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most clients train 3-4 times per week for 30-45 minutes. The beauty of personalized programming is that I design everything around YOUR schedule. Busy week? We adjust. More time available? We can do more.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do I need a gym membership?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Not necessarily! I can design effective programs for home workouts, gym access, or anywhere in between. During our consultation, we'll discuss your situation and I'll create a plan that works with what you have available.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What if I have injuries or limitations?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I work with clients who have various limitations all the time. We'll discuss any concerns during your free consultation and I'll design a program that works around your specific situation. Your safety and comfort always come first.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How quickly will I see results?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most clients notice improvements in energy and strength within the first 2 weeks. Visible physical changes typically start showing around 4-6 weeks, with significant transformations happening around the 3-month mark when you stay consistent.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I cancel or change my plan?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! While I recommend longer commitments for best results, you can manage your subscription through your Stripe customer portal. You can pause, change plans, or cancel with proper notice. I'm here to support you, not trap you.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What makes your coaching different?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Unlike generic fitness apps or one-size-fits-all programs, everything I create is 100% personalized to YOU. Your workouts, nutrition, timeline, and support are all customized based on your goals, lifestyle, and preferences. Plus, you have direct access to me 24/7.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Built By Zeb</h3>
+                    <p style="color: #a0aec0;">Transform your body with personal strength training and nutrition coaching that actually works.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="/coaching">Personal Coaching</a></li>
+                        <li><a href="/consultation">Free Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="#" onclick="openCustomerPortal()">Manage Subscription</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="mailto:hello@builtbyzeb.com">hello@builtbyzeb.com</a></li>
+                        <li><a href="#" target="_blank">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Built By Zeb. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Stripe
+        const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY_HERE'); // Replace with your actual publishable key
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.closest('.faq-item');
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-toggle').textContent = '+';
+                });
+                
+                // Toggle current item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    this.querySelector('.faq-toggle').textContent = '−';
+                }
+            });
+        });
+
+        // Stripe checkout functions
+        function openStripeCheckout(packageType) {
+            // Replace these with your actual Stripe Price IDs
+            const priceIds = {
+                'strength': 'price_YOUR_STRENGTH_PRICE_ID',
+                'complete': 'price_YOUR_COMPLETE_PRICE_ID'
+            };
+
+            const button = event.target;
+            button.classList.add('loading');
+            button.textContent = 'Loading...';
+
+            stripe.redirectToCheckout({
+                lineItems: [{
+                    price: priceIds[packageType],
+                    quantity: 1,
+                }],
+                mode: 'subscription',
+                successUrl: window.location.origin + '/success?session_id={CHECKOUT_SESSION_ID}',
+                cancelUrl: window.location.origin + '/coaching',
+                allowPromotionCodes: true,
+                billingAddressCollection: 'required',
+                customerEmail: null, // Let customer enter their email
+            }).then(function (result) {
+                button.classList.remove('loading');
+                button.textContent = 'Start My Transformation';
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            });
+        }
+
+        // Open Stripe Customer Portal
+        function openCustomerPortal() {
+            // This would typically require a backend endpoint to create the portal session
+            // For now, redirect to a contact form or provide instructions
+            window.location.href = '/contact';
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effects
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Package card animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.package-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
