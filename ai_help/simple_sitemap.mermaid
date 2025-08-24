@@ -1,0 +1,33 @@
+graph TD
+    A[🏠 Homepage<br/>builtbyzeb.com] --> B[👤 About<br/>/about]
+    A --> C[💰 Coaching<br/>/coaching]
+    A --> D[📅 Free Consultation<br/>/consultation]
+    
+    %% Post-Action Pages
+    D --> E[✅ Consultation Booked<br/>/consultation-confirmed]
+    C --> F[💳 Purchase Success<br/>/success]
+    C --> G[❌ Purchase Cancelled<br/>/cancelled]
+    
+    %% Essential Support Pages
+    A --> H[📧 Contact<br/>/contact]
+    A --> I[❓ FAQ<br/>/faq]
+    
+    %% Legal (Footer Only)
+    J[⚖️ Privacy Policy<br/>/privacy]
+    K[📜 Terms<br/>/terms]
+    
+    %% Conversion Flow
+    A -.->|Primary CTA| D
+    D -.->|After Call| C
+    C -.->|Purchase| F
+    
+    %% Styling
+    classDef primary fill:#667eea,stroke:#333,stroke-width:3px,color:#fff
+    classDef funnel fill:#f56565,stroke:#333,stroke-width:2px,color:#fff
+    classDef support fill:#48bb78,stroke:#333,stroke-width:2px,color:#fff
+    classDef legal fill:#718096,stroke:#333,stroke-width:1px,color:#333
+    
+    class A primary
+    class D,C,E,F,G funnel
+    class B,H,I support
+    class J,K legal

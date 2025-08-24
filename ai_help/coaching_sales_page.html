@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform Your Body - Built By Zeb Coaching</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-headline {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subheadline {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .social-proof {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 40px auto;
+            max-width: 600px;
+        }
+
+        .main-content {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-headline {
+            font-size: 36px;
+            font-weight: bold;
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .problem-section {
+            background: #f7fafc;
+            padding: 60px 0;
+        }
+
+        .problem-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .problem-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .problem-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .solution-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .packages-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .packages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .package-card.popular {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            background: #667eea;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 50px;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+        }
+
+        .package-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .package-subtitle {
+            color: #718096;
+            margin-bottom: 30px;
+        }
+
+        .pricing-section {
+            margin: 30px 0;
+        }
+
+        .price-options {
+            margin-bottom: 20px;
+        }
+
+        .price-option {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .price-option:hover,
+        .price-option.selected {
+            border-color: #667eea;
+            background: #edf2f7;
+        }
+
+        .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .price-period {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .savings {
+            background: #48bb78;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .features-list {
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .checkmark {
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+
+        .cta-button {
+            background: #f56565;
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .cta-button:hover {
+            background: #e53e3e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .testimonials-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .testimonial-card {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .guarantee-section {
+            background: #e6fffa;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .guarantee-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .faq-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            background: #f7fafc;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 25px 25px;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .hero-headline {
+                font-size: 36px;
+            }
+            
+            .hero-subheadline {
+                font-size: 20px;
+            }
+            
+            .packages-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .package-card.popular {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-headline">Transform Your Body in 90 Days<br>With Personal Coaching That Actually Works</h1>
+            <p class="hero-subheadline">Stop wasting time with generic programs. Get a custom plan designed specifically for your body, schedule, and goals.</p>
+            
+            <div class="social-proof">
+                <strong>"I've helped 50+ clients build the strong, confident bodies they always wanted - without spending hours in the gym or following restrictive diets."</strong><br>
+                <span style="opacity: 0.8;">- Zeb, Certified Strength Coach</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-headline">You're Frustrated Because...</h2>
+            
+            <div class="problem-list">
+                <div class="problem-item">
+                    <div class="problem-icon">😤</div>
+                    <h3>You've Tried Everything</h3>
+                    <p>YouTube workouts, fitness apps, gym memberships - nothing sticks or gives you the results you want</p>
+                </div>
+                
+                <div class="problem-item">
+                    <div class="problem-icon">⏰</div>
+                    <h3>You're Always Starting Over</h3>
+                    <p>You get motivated, go hard for a few weeks, then life happens and you're back to square one</p>
+                </div>
+                
+                <div class="problem-item">
+                    <div class="problem-icon">🤷‍♂️</div>
+                    <h3>You Don't Know What Actually Works</h3>
+                    <p>There's so much conflicting information - you're paralyzed by choice and don't know who to trust</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <h2 class="section-headline" style="color: white;">Here's What Changes Everything</h2>
+            <p style="font-size: 20px; max-width: 800px; margin: 0 auto; opacity: 0.9;">
+                You don't need another generic program. You need a coach who understands YOUR specific situation and creates a plan that fits YOUR life. 
+                That's exactly what my 1-on-1 coaching provides - a completely personalized system designed to get you results.
+            </p>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages-section">
+        <div class="container">
+            <h2 class="section-headline">Choose Your Transformation</h2>
+            <p style="text-align: center; font-size: 18px; color: #4a5568; max-width: 600px; margin: 0 auto;">
+                Every package includes your FREE consultation, weekly check-ins, and 24/7 messaging access to me
+            </p>
+
+            <div class="packages-container">
+                <!-- Strength Training Package -->
+                <div class="package-card">
+                    <h3 class="package-title">Strength Training</h3>
+                    <p class="package-subtitle">Build muscle, get stronger, look athletic</p>
+                    
+                    <div class="pricing-section">
+                        <div class="price-options">
+                            <div class="price-option" data-package="strength" data-duration="monthly">
+                                <div class="price-amount">$147<span class="price-period">/month</span></div>
+                                <div style="font-size: 14px; color: #718096;">Month-to-month, cancel anytime</div>
+                            </div>
+                            
+                            <div class="price-option" data-package="strength" data-duration="3-month">
+                                <div class="price-amount">$127<span class="price-period">/month</span> <span class="savings">Save 14%</span></div>
+                                <div style="font-size: 14px; color: #718096;">$381 every 3 months</div>
+                            </div>
+                            
+                            <div class="price-option selected" data-package="strength" data-duration="6-month">
+                                <div class="price-amount">$107<span class="price-period">/month</span> <span class="savings">Save 27%</span></div>
+                                <div style="font-size: 14px; color: #718096;">$642 every 6 months - Best Value!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span>Custom training programs updated regularly</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span>Weekly progress check-ins</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span>24/7 messaging support</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span>Exercise video library</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span>FREE initial consultation</span>
+                        </div>
+                    </div>
+
+                    <button class="cta-button" onclick="selectPackage('strength', '6-month', 107, 642)">Start My Transformation</button>
+                </div>
+
+                <!-- Strength + Nutrition Package -->
+                <div class="package-card popular">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3 class="package-title">Strength + Nutrition</h3>
+                    <p class="package-subtitle">Complete body transformation system</p>
+                    
+                    <div class="pricing-section">
+                        <div class="price-options">
+                            <div class="price-option" data-package="full" data-duration="monthly">
+                                <div class="price-amount">$247<span class="price-period">/month</span></div>
+                                <div style="font-size: 14px; color: #718096;">Month-to-month, cancel anytime</div>
+                            </div>
+                            
+                            <div class="price-option" data-package="full" data-duration="3-month">
+                                <div class="price-amount">$217<span class="price-period">/month</span> <span class="savings">Save 12%</span></div>
+                                <div style="font-size: 14px; color: #718096;">$651 every 3 months</div>
+                            </div>
+                            
+                            <div class="price-option selected" data-package="full" data-duration="6-month">
+                                <div class="price-amount">$187<span class="price-period">/month</span> <span class="savings">Save 24%</span></div>
+                                <div style="font-size: 14px; color: #718096;">$1,122 every 6 months - Best Value!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span><strong>Everything in Strength Training PLUS:</strong></span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span>Personalized nutrition plan</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span>Macro tracking and adjustments</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span>Meal planning templates</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span>Recipe database access</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="checkmark">✓</span>
+                            <span>Supplement guidance</span>
+                        </div>
+                    </div>
+
+                    <button class="cta-button" onclick="selectPackage('full', '6-month', 187, 1122)">Start My Transformation</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-headline">Real Results from Real People</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I lost 15 pounds and gained so much confidence in just 3 months. Zeb's approach made it feel manageable and sustainable. I actually look forward to my workouts now!"</p>
+                    <p class="testimonial-author">- Sarah M., Working Mom</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Finally found a coach who gets it. The workouts fit my crazy schedule and I'm stronger than I've been in years. Worth every penny."</p>
+                    <p class="testimonial-author">- Mike T., Software Engineer</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The nutrition guidance was a game-changer. I never felt like I was on a 'diet' but the weight came off naturally. Down 2 pants sizes and feeling amazing!"</p>
+                    <p class="testimonial-author">- Jennifer L., Teacher</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="guarantee-section">
+        <div class="container">
+            <div class="guarantee-content">
+                <h2 style="color: #2d3748; margin-bottom: 20px;">🛡️ Your Success is Guaranteed</h2>
+                <p style="font-size: 18px; margin-bottom: 20px;">
+                    I'm so confident in my coaching system that I offer a <strong>30-day money-back guarantee</strong>. 
+                    If you follow the program and don't see meaningful progress in your first month, I'll refund every penny.
+                </p>
+                <p style="color: #4a5568;">
+                    That's how sure I am that this will work for you.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-headline">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How much time do I need to commit?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Most clients train 3-4 times per week for 30-45 minutes. The beauty of personalized programming is that I design everything around YOUR schedule. Busy week? We adjust. More time available? We can do more.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do I need a gym membership?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Not necessarily! I can design effective programs for home workouts, gym access, or anywhere in between. During our consultation, we'll discuss your situation and I'll create a plan that works with what you have available.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What if I have injuries or limitations?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>I work with clients who have various limitations all the time. We'll discuss any concerns during your free consultation and I'll design a program that works around your specific situation. Your safety and comfort always come first.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How quickly will I see results?</span>
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Most clients notice improvements in energy and strength within the first 2 weeks. Visible physical changes typically start showing around 4-6 weeks, with significant transformations happening around the 3-month mark when you stay consistent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Package selection functionality
+        document.querySelectorAll('.price-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected from siblings
+                this.parentElement.querySelectorAll('.price-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                // Add selected to clicked option
+                this.classList.add('selected');
+                
+                // Update button with selected package info
+                const packageType = this.dataset.package;
+                const duration = this.dataset.duration;
+                const monthlyPrice = this.querySelector('.price-amount').textContent.match(/\$(\d+)/)[1];
+                const totalAmount = duration.includes('month') ? 
+                    this.textContent.match(/\$(\d+,?\d+)/g)[1].replace('$', '').replace(',', '') : 
+                    monthlyPrice;
+                
+                const button = this.closest('.package-card').querySelector('.cta-button');
+                button.setAttribute('onclick', `selectPackage('${packageType}', '${duration}', ${monthlyPrice}, ${totalAmount})`);
+            });
+        });
+
+        function selectPackage(type, duration, monthlyPrice, totalAmount) {
+            // In real implementation, this would integrate with Stripe
+            const packageName = type === 'strength' ? 'Strength Training' : 'Strength + Nutrition';
+            
+            alert(`Selected: ${packageName}\nDuration: ${duration}\nMonthly: $${monthlyPrice}\nTotal: $${totalAmount}\n\nIn production, this would redirect to Stripe checkout!`);
+            
+            // Example Stripe integration:
+            // window.location.href = `https://checkout.stripe.com/pay/${stripeSessionId}`;
+        }
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.closest('.faq-item');
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-question span:last-child').textContent = '+';
+                });
+                
+                // Toggle current item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    this.querySelector('span:last-child').textContent = '-';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

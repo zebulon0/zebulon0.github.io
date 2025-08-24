@@ -54,7 +54,7 @@ Visit the live website at: **[coach.zebhollinger.com](https://coach.zebhollinger
 ### Deployment
 This site is automatically deployed via GitHub Pages:
 - **GitHub Pages URL**: `https://zebulon0.github.io`
-- **Custom Domain**: `https://coach.zebhollinger.com`
+- **Custom Domain**: `https://builtbyzeb.com`
 
 Any changes pushed to the `main` branch will automatically update the live website.
 

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your FREE Strategy Session | Built By Zeb</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+        }
+
+        .header {
+            background: rgba(255,255,255,0.95);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .booking-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .info-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .calendar-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .main-headline {
+            font-size: 36px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .sub-headline {
+            font-size: 20px;
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+
+        .session-details {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .what-we-cover {
+            margin: 30px 0;
+        }
+
+        .cover-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            background: #48bb78;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .testimonial {
+            background: #edf2f7;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            margin: 30px 0;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+            margin-top: 10px;
+            font-style: normal;
+        }
+
+        .calendar-container {
+            text-align: center;
+        }
+
+        .calendar-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .calendar-placeholder {
+            background: #f7fafc;
+            border: 2px dashed #cbd5e0;
+            border-radius: 15px;
+            padding: 60px 20px;
+            color: #718096;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .booking-form {
+            background: #667eea;
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        .submit-btn {
+            background: #f56565;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #e53e3e;
+            transform: translateY(-2px);
+        }
+
+        .guarantee {
+            background: #e6fffa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #38b2ac;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .booking-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .info-panel,
+            .calendar-panel {
+                padding: 30px 20px;
+            }
+            
+            .main-headline {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">BUILT BY ZEB</div>
+    </div>
+
+    <div class="container">
+        <div class="booking-section">
+            <div class="info-panel">
+                <h1 class="main-headline">Book Your FREE 30-Minute Strategy Session</h1>
+                <p class="sub-headline">Let's design your personalized plan to build the strong, confident body you want</p>
+
+                <div class="session-details">
+                    <div class="detail-item">
+                        <div class="icon">⏰</div>
+                        <span><strong>Duration:</strong> 30 minutes</span>
+                    </div>
+                    <div class="detail-item">
+                        <div class="icon">💻</div>
+                        <span><strong>Format:</strong> Video call (Zoom link provided)</span>
+                    </div>
+                    <div class="detail-item">
+                        <div class="icon">💰</div>
+                        <span><strong>Cost:</strong> Completely FREE - no strings attached</span>
+                    </div>
+                    <div class="detail-item">
+                        <div class="icon">📅</div>
+                        <span><strong>Availability:</strong> Monday-Friday, 6am-7pm EST</span>
+                    </div>
+                </div>
+
+                <div class="what-we-cover">
+                    <h3 style="font-size: 24px; margin-bottom: 20px; color: #2d3748;">What We'll Cover:</h3>
+                    
+                    <div class="cover-item">
+                        <div class="step-number">1</div>
+                        <div>
+                            <strong>Assess Your Current Situation</strong><br>
+                            We'll talk about where you are now, what's worked (and what hasn't), and identify any obstacles holding you back.
+                        </div>
+                    </div>
+
+                    <div class="cover-item">
+                        <div class="step-number">2</div>
+                        <div>
+                            <strong>Define Your Goals</strong><br>
+                            Get crystal clear on what you want to achieve and create a realistic timeline for getting there.
+                        </div>
+                    </div>
+
+                    <div class="cover-item">
+                        <div class="step-number">3</div>
+                        <div>
+                            <strong>Design Your Custom Plan</strong><br>
+                            I'll outline a personalized approach for your training, nutrition, and lifestyle that fits your schedule.
+                        </div>
+                    </div>
+
+                    <div class="cover-item">
+                        <div class="step-number">4</div>
+                        <div>
+                            <strong>Discuss Next Steps</strong><br>
+                            See if my 1-on-1 coaching program is a good fit for you (no pressure - this is about finding the right solution).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    "The strategy session with Zeb was exactly what I needed. He helped me see why my previous attempts hadn't worked and gave me a clear path forward. Even if I hadn't hired him, that call alone was worth it!"
+                    <div class="testimonial-author">- Mike T., Software Engineer</div>
+                </div>
+
+                <div class="guarantee">
+                    <strong>🎯 My Promise:</strong> Even if we're not a perfect fit to work together, you'll walk away with actionable steps to improve your fitness. This call will be valuable regardless.
+                </div>
+            </div>
+
+            <div class="calendar-panel">
+                <div class="calendar-container">
+                    <h2 class="calendar-title">Select Your Preferred Time</h2>
+                    
+                    <div class="calendar-placeholder">
+                        📅 CALENDLY WIDGET GOES HERE 📅<br><br>
+                        In your actual implementation, embed your Calendly widget here.<br><br>
+                        Example: &lt;div class="calendly-inline-widget" data-url="https://calendly.com/builtzeb/strategy-session"&gt;&lt;/div&gt;
+                    </div>
+
+                    <div class="booking-form">
+                        <div class="form-title">Pre-Call Information</div>
+                        <p style="margin-bottom: 20px; text-align: center; font-size: 14px;">Help me prepare for our call by answering a few quick questions:</p>
+                        
+                        <form id="preCallForm">
+                            <div class="form-group">
+                                <label>What's your #1 fitness goal?</label>
+                                <select required>
+                                    <option value="">Select your primary goal</option>
+                                    <option value="lose-weight">Lose weight/fat</option>
+                                    <option value="build-muscle">Build muscle/strength</option>
+                                    <option value="get-fit">Get back in shape</option>
+                                    <option value="tone-up">Tone up/lean out</option>
+                                    <option value="other">Other (we'll discuss)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Current activity level?</label>
+                                <select required>
+                                    <option value="">Select activity level</option>
+                                    <option value="sedentary">Sedentary (desk job, little exercise)</option>
+                                    <option value="light">Light (1-2 workouts/week)</option>
+                                    <option value="moderate">Moderate (3-4 workouts/week)</option>
+                                    <option value="active">Very active (5+ workouts/week)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Biggest challenge with fitness?</label>
+                                <select required>
+                                    <option value="">Select biggest challenge</option>
+                                    <option value="time">Not enough time</option>
+                                    <option value="motivation">Staying motivated</option>
+                                    <option value="knowledge">Don't know what to do</option>
+                                    <option value="consistency">Being consistent</option>
+                                    <option value="results">Not seeing results</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Anything specific you want to discuss? (Optional)</label>
+                                <textarea placeholder="Past injuries, specific concerns, questions about my coaching, etc."></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Complete Booking</button>
+                        </form>
+                    </div>
+                </div>

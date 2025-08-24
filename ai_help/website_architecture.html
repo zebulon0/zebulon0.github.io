@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Built By Zeb - Transform Your Body with Personal Strength Coaching</title>
+    <meta name="description" content="Professional strength training and nutrition coaching. Get your FREE 7-day workout plan and start building the strong, confident body you want.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .cta-nav {
+            background: #667eea;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cta-nav:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="rgba(255,255,255,0.2)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-headline {
+            font-size: 54px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subheadline {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 20px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn-primary {
+            background: #f56565;
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(245, 101, 101, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #e53e3e;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(245, 101, 101, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 20px 40px;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Social Proof Bar */
+        .social-proof {
+            background: #2d3748;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #f56565;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: #f7fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 30px;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 42px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 30px;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            color: #4a5568;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-placeholder {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            background: #f56565;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 30px;
+        }
+
+        .step-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .step-description {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: #f7fafc;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 18px;
+            font-style: italic;
+            color: #4a5568;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            background: #667eea;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .author-info h4 {
+            color: #2d3748;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2d3748, #4a5568);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .cta-content p {
+            font-size: 22px;
+            opacity: 0.9;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 30px;
+            text-align: center;
+            color: #a0aec0;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-headline {
+                font-size: 36px;
+            }
+            
+            .hero-subheadline {
+                font-size: 20px;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+        }
+
+        /* Lead Capture Popup */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #718096;
+        }
+
+        .popup-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .popup-form {
+            margin-top: 30px;
+        }
+
+        .popup-form input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .popup-form input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">BUILT BY ZEB</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Success Stories</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#free-plan" class="cta-nav">Get Free Plan</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-headline">Build the Strong, Confident Body You've Always Wanted</h1>
+            <p class="hero-subheadline">Personal strength training and nutrition coaching that fits your life - no gym required</p>
+            <div class="hero-cta">
+                <a href="#free-plan" class="btn-primary">Get Your FREE Workout Plan</a>
+                <a href="#about" class="btn-secondary">Learn My Method</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Bar -->
+    <section class="social-proof">
+        <div class="social-stats">
+            <div class="stat">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Clients Transformed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Pounds Lost</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4.9★</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="services" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Built By Zeb Works</h2>
+                <p class="section-subtitle">Unlike generic fitness apps and cookie-cutter programs, I create completely personalized plans that evolve with your progress</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">100% Personalized</h3>
+                    <p class="feature-description">Every workout and meal plan is designed specifically for your body, goals, and lifestyle. No two clients get the same program.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p class="feature-description">Text me anytime with questions. Get form checks, motivation, and guidance whenever you need it most.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏠</div>
+                    <h3 class="feature-title">Train Anywhere</h3>
+                    <p class="feature-description">Home, gym, hotel room - I'll design workouts that fit your space and equipment. No excuses, just results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Hi, I'm Zeb</h2>
+                    <p>Three years ago, I was stuck in the same cycle you might be experiencing - starting and stopping fitness routines, feeling frustrated with lack of results, and not knowing who to trust for advice.</p>
+                    
+                    <p>Everything changed when I discovered that successful fitness isn't about perfect genetics or endless motivation. It's about having the right system and someone who believes in you.</p>
+                    
+                    <p>Now I've helped 50+ people transform their bodies and relationship with fitness. My approach is simple: personalized plans, consistent support, and sustainable habits that actually fit your life.</p>
+                    
+                    <p><strong>Ready to finally get this right?</strong></p>
+                    
+                    <a href="#free-plan" class="btn-primary" style="display: inline-block; margin-top: 20px;">Start with My Free Plan</a>
+                </div>
+                
+                <div class="about-image">
+                    <div class="about-image-placeholder">
+                        Your Professional Photo Here
+                        <br><small style="font-size: 16px;">Replace with actual photo</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">How It Works</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">My proven 4-step system that's helped dozens of people build their strongest, most confident selves</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Free Strategy Call</h3>
+                    <p class="step-description">We'll assess your current situation, identify what's been holding you back, and design a custom plan for your goals.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Custom Programming</h3>
+                    <p class="step-description">Get workouts and nutrition plans designed specifically for your body, schedule, and preferences. Everything evolves with your progress.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Weekly Check-ins</h3>
+                    <p class="step-description">We review your progress, adjust your plan, and keep you accountable. Plus 24/7 text support for questions and motivation.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Transform & Maintain</h3>
+                    <p class="step-description">Watch your body and confidence transform while building sustainable habits that last a lifetime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Success Stories</h2>
+                <p class="section-subtitle">Real people, real results, real transformations</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"I lost 15 pounds and gained so much confidence in just 3 months. Zeb's approach made it feel manageable and sustainable. I actually look forward to my workouts now!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah M.</h4>
+                            <p>Working Mom, Lost 15 lbs</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"Finally found a coach who gets it. The workouts fit my crazy schedule and I'm stronger than I've been in years. Worth every penny."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MT</div>
+                        <div class="author-info">
+                            <h4>Mike T.</h4>
+                            <p>Software Engineer, 25 lbs muscle gain</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"The nutrition guidance was a game-changer. I never felt like I was on a 'diet' but the weight came off naturally. Down 2 pants sizes and feeling amazing!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JL</div>
+                        <div class="author-info">
+                            <h4>Jennifer L.</h4>
+                            <p>Teacher, Down 2 pants sizes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="free-plan" class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Transformation?</h2>
+                <p>Get my FREE 7-Day Strength Building Workout Plan - the same foundation I use with all my clients. No gym required, just 15-25 minutes per day.</p>
+                <a href="/free-workout-plan" class="btn-primary">Get Your FREE Workout Plan</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Built By Zeb</h3>
+                    <p style="color: #a0aec0;">Transform your body with personal strength training and nutrition coaching that actually works.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="/coaching">1-on-1 Coaching</a></li>
+                        <li><a href="/free-workout-plan">Free Workout Plan</a></li>
+                        <li><a href="/consultation">Free Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/success-stories">Success Stories</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="mailto:zeb@builtbyzeb.com">zeb@builtbyzeb.com</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Built By Zeb LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lead Capture Popup (Exit Intent) -->
+    <div class="popup-overlay" id="exitPopup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <h3 class="popup-title">Wait! Don't Leave Empty Handed</h3>
+            <p>Get my FREE 7-Day Workout Plan before you go. It's the same foundation I use with all my clients.</p>
+            
+            <form class="popup-form">
+                <input type="text" placeholder="Your First Name" required>
+                <input type="email" placeholder="Your Email Address" required>
+                <button type="submit" class="btn-primary">Send Me My Free Plan</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Exit intent popup
+        let exitShown = false;
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY <= 0 && !exitShown) {
+                document.getElementById('exitPopup').style.display = 'flex';
+                exitShown = true;
+            }
+        });
+
+        function closePopup() {
+            document.getElementById('exitPopup').style.display = 'none';
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('exitPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+
+        // Form submissions (redirect to funnel pages)
+        document.querySelectorAll('a[href="#free-plan"], a[href="/free-workout-plan"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // In production, redirect to your lead magnet landing page
+                window.location.href = '/free-workout-plan';
+            });
+        });
+    </script>
+</body>
+</html>
