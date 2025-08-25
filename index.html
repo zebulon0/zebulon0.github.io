@@ -423,39 +423,36 @@
             line-height: 1.6;
         }
 
-        /* Testimonials */
-        .testimonials-section {
+        .about-section {
             padding: 100px 0;
-            background: var(--light-gray);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .testimonial-card {
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--primary-blue);
         }
 
-        .testimonial-text {
-            font-style: italic;
-            font-size: 18px;
-            line-height: 1.6;
-            color: var(--medium-gray);
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark-blue);
             margin-bottom: 24px;
         }
 
-        .testimonial-author {
-            font-weight: 700;
-            color: var(--primary-blue);
-            font-size: 16px;
+        .about-text p {
+            font-size: 18px;
+            color: var(--medium-gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
 
         /* CTA Section */
@@ -585,12 +582,12 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">BUILT BY ZEB</div>
+            <a href="/" class="logo">BUILT BY ZEB</a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="#about">About Zeb</a></li>
                 <li><a href="/coaching">Coaching</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
             <a href="/consultation" class="cta-nav">Free Consultation</a>
             <button class="mobile-menu-btn">☰</button>
@@ -705,28 +702,18 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials-section">
+    <!-- About Section -->
+    <section id="about" class="about-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Real Results from Real People</h2>
-                <p class="section-subtitle">Don't just take my word for it</p>
-            </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">"I lost 15 pounds and gained so much confidence in just 3 months. Zeb's approach made it feel manageable and sustainable. I actually look forward to my workouts now!"</p>
-                    <p class="testimonial-author">- Sarah M., Working Mom</p>
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/500x600" alt="Zeb, founder of Built By Zeb Coaching">
                 </div>
-                
-                <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">"Finally found a coach who gets it. The workouts fit my crazy schedule and I'm stronger than I've been in years. Worth every penny."</p>
-                    <p class="testimonial-author">- Mike T., Software Engineer</p>
-                </div>
-                
-                <div class="testimonial-card fade-in">
-                    <p class="testimonial-text">"The nutrition guidance was a game-changer. I never felt like I was on a 'diet' but the weight came off naturally. Down 2 pants sizes and feeling amazing!"</p>
-                    <p class="testimonial-author">- Jennifer L., Teacher</p>
+                <div class="about-text">
+                    <h2>My Story</h2>
+                    <p>Like many of you, I spent years spinning my wheels. I tried every workout program I could find online, jumped from one diet to the next, and felt like I was constantly starting over. I was frustrated, confused by all the conflicting information, and ready to give up.</p>
+                    <p>It wasn't until I committed to learning the science of strength training and nutrition that everything changed. I got certified, hired my own coaches, and dedicated myself to understanding how to get real, sustainable results. I realized that the secret wasn't a magic workout or a restrictive diet—it was a personalized plan built on proven principles, consistency, and accountability.</p>
+                    <p>Now, I've taken everything I've learned and used it to help over 50 people just like you. My mission is to cut through the noise and provide you with a clear, simple, and effective path to achieving your fitness goals. No fads, no quick fixes, just a solid plan that fits your life.</p>
                 </div>
             </div>
         </div>
@@ -755,7 +742,7 @@
                 <div class="footer-section">
                     <h3>Services</h3>
                     <ul>
-                        <li><a href="/coaching">Personal Coaching</a></li>
+                        <li><a href="/coaching">Coaching</a></li>
                         <li><a href="/consultation">Free Consultation</a></li>
                     </ul>
                 </div>
@@ -763,17 +750,17 @@
                 <div class="footer-section">
                     <h3>Company</h3>
                     <ul>
-                        <li><a href="/about">About Zeb</a></li>
-                        <li><a href="/faq">FAQ</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="#about">About Zeb</a></li>
+                        <li><a href="/coaching#faq">FAQ</a></li>
+                        <li><a href="#" onclick="openCustomerPortal()">Manage Subscription</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-section">
+                <div id="contact" class="footer-section">
                     <h3>Connect</h3>
                     <ul>
-                        <li><a href="mailto:hello@builtbyzeb.com">hello@builtbyzeb.com</a></li>
-                        <li><a href="#" target="_blank">Instagram</a></li>
+                        <li><a href="mailto:zeb@builtbyzeb.com">zeb@builtbyzeb.com</a></li>
+                        <li><a href="https://instagram.com/builtbyzeb" target="_blank">Instagram</a></li>
                     </ul>
                 </div>
             </div>
@@ -785,6 +772,13 @@
     </footer>
 
     <script>
+        // Open Stripe Customer Portal
+        function openCustomerPortal() {
+            // This would typically require a backend endpoint to create the portal session
+            // For now, redirect to a contact form or provide instructions
+            window.location.href = 'https://billing.stripe.com/p/login/6oUdRa5Ce63Cfr8eXD53O00';
+        }
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {

@@ -549,9 +549,9 @@
             <a href="/" class="logo">BUILT BY ZEB</a>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="/#about">About Zeb</a></li>
                 <li><a href="/coaching">Coaching</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="/#contact">Contact</a></li>
             </ul>
             <a href="/consultation" class="cta-nav">Free Consultation</a>
         </div>
@@ -564,6 +564,23 @@
             <p class="hero-subheadline">Get the personalized coaching program that fits your goals, schedule, and budget. Every package includes your FREE consultation and 24/7 messaging access.</p>
         </div>
     </section>
+    
+    <!-- Strip Pricing Table Package Section -->
+     <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-container">
+                <script 
+                async 
+                src="https://js.stripe.com/v3/pricing-table.js">
+                </script>
+                <stripe-pricing-table 
+                pricing-table-id="prctbl_1Ry1HuJTYQVJ2D8wH6VgUihZ"
+                publishable-key="pk_live_51RmgwSJTYQVJ2D8wVoLrLHM3GPx9ulQzlJZSnQNwYEXdnDmLfM0ELsB59WLCWBa7QuvM7RiPYKrBWN72cUaLHUwj00aN2p6wHt"
+                >
+                </stripe-pricing-table>
+            </div>
+        </div>
+     </section>
 
     <!-- Packages Section -->
     <section class="packages-section">
@@ -677,24 +694,8 @@
         </div>
     </section>
 
-    <!-- Guarantee Section -->
-    <section class="guarantee-section">
-        <div class="container">
-            <div class="guarantee-content">
-                <h2 class="guarantee-title">🛡️ Your Success is Guaranteed</h2>
-                <p class="guarantee-text">
-                    I'm so confident in my coaching system that I offer a <span class="guarantee-highlight">30-day money-back guarantee</span>. 
-                    If you follow the program and don't see meaningful progress in your first month, I'll refund every penny.
-                </p>
-                <p class="guarantee-text">
-                    That's how sure I am that this will work for you.
-                </p>
-            </div>
-        </div>
-    </section>
-
     <!-- FAQ Section -->
-    <section class="faq-section">
+    <section id="faq" class="faq-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Frequently Asked Questions</h2>
@@ -702,6 +703,26 @@
             </div>
             
             <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What makes your coaching different?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Unlike generic fitness apps or one-size-fits-all programs, everything I create is 100% personalized to YOU. Your workouts, nutrition, timeline, and support are all customized based on your goals, lifestyle, and preferences. Plus, you have direct access to me 24/7.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How quickly will I see results?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most clients notice improvements in energy and strength within the first 2 weeks. Visible physical changes typically start showing around 4-6 weeks, with significant transformations happening around the 3-month mark when you stay consistent.</p>
+                    </div>
+                </div>
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <span>How much time do I need to commit?</span>
@@ -721,7 +742,7 @@
                         <p>Not necessarily! I can design effective programs for home workouts, gym access, or anywhere in between. During our consultation, we'll discuss your situation and I'll create a plan that works with what you have available.</p>
                     </div>
                 </div>
-                
+
                 <div class="faq-item">
                     <div class="faq-question">
                         <span>What if I have injuries or limitations?</span>
@@ -729,16 +750,6 @@
                     </div>
                     <div class="faq-answer">
                         <p>I work with clients who have various limitations all the time. We'll discuss any concerns during your free consultation and I'll design a program that works around your specific situation. Your safety and comfort always come first.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>How quickly will I see results?</span>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Most clients notice improvements in energy and strength within the first 2 weeks. Visible physical changes typically start showing around 4-6 weeks, with significant transformations happening around the 3-month mark when you stay consistent.</p>
                     </div>
                 </div>
 
@@ -752,15 +763,6 @@
                     </div>
                 </div>
 
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>What makes your coaching different?</span>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Unlike generic fitness apps or one-size-fits-all programs, everything I create is 100% personalized to YOU. Your workouts, nutrition, timeline, and support are all customized based on your goals, lifestyle, and preferences. Plus, you have direct access to me 24/7.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -777,7 +779,7 @@
                 <div class="footer-section">
                     <h3>Services</h3>
                     <ul>
-                        <li><a href="/coaching">Personal Coaching</a></li>
+                        <li><a href="/coaching">Coaching</a></li>
                         <li><a href="/consultation">Free Consultation</a></li>
                     </ul>
                 </div>
@@ -785,8 +787,8 @@
                 <div class="footer-section">
                     <h3>Support</h3>
                     <ul>
-                        <li><a href="/faq">FAQ</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="/#contact">Contact</a></li>
                         <li><a href="#" onclick="openCustomerPortal()">Manage Subscription</a></li>
                     </ul>
                 </div>
@@ -794,8 +796,8 @@
                 <div class="footer-section">
                     <h3>Connect</h3>
                     <ul>
-                        <li><a href="mailto:hello@builtbyzeb.com">hello@builtbyzeb.com</a></li>
-                        <li><a href="#" target="_blank">Instagram</a></li>
+                        <li><a href="mailto:zeb@builtbyzeb.com">zeb@builtbyzeb.com</a></li>
+                        <li><a href="https://instagram.com/builtbyzeb" target="_blank">Instagram</a></li>
                     </ul>
                 </div>
             </div>
@@ -807,8 +809,13 @@
     </footer>
 
     <script>
+        //
+        //
+        // AI GENERATED BELOW
+        //
+        //
         // Initialize Stripe
-        const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY_HERE'); // Replace with your actual publishable key
+        const stripe = Stripe('pk_live_51RmgwSJTYQVJ2D8wVoLrLHM3GPx9ulQzlJZSnQNwYEXdnDmLfM0ELsB59WLCWBa7QuvM7RiPYKrBWN72cUaLHUwj00aN2p6wHt'); // Replace with your actual publishable key
 
         // FAQ functionality
         document.querySelectorAll('.faq-question').forEach(question => {
